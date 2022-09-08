@@ -1,0 +1,3 @@
+C:/Users/Sarmat/CLionProjects/sqrt_d/cmake-build-debug/CMakeFiles/sqrt_d.dir
+C:/Users/Sarmat/CLionProjects/sqrt_d/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Sarmat/CLionProjects/sqrt_d/cmake-build-debug/CMakeFiles/rebuild_cache.dir
