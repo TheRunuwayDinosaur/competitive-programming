@@ -7,7 +7,7 @@ using namespace std;
 
 const int block_size = 256;
 const int UNDEF = -1;
-
+const int INF = 1e9;
 auto &setmax(auto &x) { return x; }
 
 auto &setmin(auto &x) { return x; }
@@ -25,13 +25,13 @@ public:
     explicit R_decomposition(int size){
         cnt_blocks = size / block_size + 1;
     }
-    int get_block(int &pos) const {
+    static int get_block(int pos) {
         return pos / block_size;
     }
-    int begin_block(int &block) const{
+    static int begin_block(int block) {
         return block * block_size;
     }
-    int end_block(int &block) const{
+    static int end_block(int block) {
         return block * block_size + block_size;
     }
     void init_sum(vector <int> &a){
@@ -62,7 +62,10 @@ public:
     void update_min(vector <int> &a,int pos,int new_val){
         pos--;
         a[pos] = new_val;
-        setmin(min_in_block[get_block(pos)],a[pos]);
+        min_in_block[get_block(pos)] = INF;
+        for (int i = begin_block(get_block(pos));i < end_block(get_block(pos));i++){
+            setmin(min_in_block[get_block(i)],a[i]);
+        }
     }
     void update_val(vector <int> &a,int l,int r,int new_val){
         l--; r--;
