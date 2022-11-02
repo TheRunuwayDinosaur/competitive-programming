@@ -25,6 +25,15 @@ public:
     explicit R_decomposition(int size){
         cnt_blocks = size / block_size + 1;
     }
+    int get_block(int &pos) const {
+        return pos / block_size;
+    }
+    int begin_block(int &block) const{
+        return block * block_size;
+    }
+    int end_block(int &block) const{
+        return block * block_size + block_size;
+    }
     void init_sum(vector <int> &a){
         sum_in_block.assign(cnt_blocks,0);
         for (int i = 0;i < isz(a);i++){
@@ -53,16 +62,7 @@ public:
     void update_min(vector <int> &a,int pos,int new_val){
         pos--;
         a[pos] = new_val;
-        setmin(min_in_block[pos],a[pos]);
-    }
-    int get_block(int &pos) const {
-        return pos / block_size;
-    }
-    int begin_block(int &block) const{
-        return block * block_size;
-    }
-    int end_block(int &block) const{
-        return block * block_size + block_size;
+        setmin(min_in_block[get_block(pos)],a[pos]);
     }
     void update_val(vector <int> &a,int l,int r,int new_val){
         l--; r--;
