@@ -37,13 +37,13 @@ public:
     void init_sum(vector <int> &a){
         sum_in_block.assign(cnt_blocks,0);
         for (int i = 0;i < isz(a);i++){
-            sum_in_block[i / block_size] += a[i];
+            sum_in_block[get_block(i)] += a[i];
         }
     }
     void init_min(vector <int> &a){
         min_in_block.assign(cnt_blocks,1e9);
         for (int i = 0;i < isz(a);i++){
-            setmin(min_in_block[i / block_size],a[i]);
+            setmin(min_in_block[get_block(i)],a[i]);
         }
     }
     void init_new_val(vector <int> &a){
@@ -55,9 +55,9 @@ public:
     }
     void update_sum(vector <int> &a,int pos,int new_val){
         pos--;
-        sum_in_block[pos / block_size] -= a[pos];
+        sum_in_block[get_block(pos)] -= a[pos];
         a[pos] = new_val;
-        sum_in_block[pos / block_size] += new_val;
+        sum_in_block[get_block(pos)] += new_val;
     }
     void update_min(vector <int> &a,int pos,int new_val){
         pos--;
